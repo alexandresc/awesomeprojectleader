@@ -1,5 +1,4 @@
 export type AppParamList = {
-    Home: undefined;
-    Search: undefined;
+  Home: undefined;
+  Search: undefined;
 };
-

@@ -2,13 +2,11 @@ import 'react-native-gesture-handler';
 
 // import React, {useState} from 'react';
 // import Routes from './Routes'
-import Providers from './Providers'
+import Providers from './Providers';
 // import {AuthProvider} from './contexts/auth'
 
 // import Routes from './routes'
 // import SignIn from './pages/SignIn/index';
-import signin from './pages/react-navigation/signin'
-import dashboard from './pages/react-navigation/dashboard'
 
 // const App = () => {
 
@@ -22,4 +20,4 @@ import dashboard from './pages/react-navigation/dashboard'
 
 // export default App;
 
-export default Providers
+export default Providers;

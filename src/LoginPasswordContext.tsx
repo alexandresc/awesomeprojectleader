@@ -1,13 +1,9 @@
-import React, {useState} from 'react';
-import {createContext} from 'react';
+import React from 'react';
 
 type loginEmail = any;
 type loginPassword = any;
 
-
-interface LoginPasswordProps {
-
-}
+interface LoginPasswordProps {}
 
 export const LoginPasswordContext = React.createContext<{
   loginEmail: any;
