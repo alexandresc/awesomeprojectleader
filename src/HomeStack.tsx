@@ -90,6 +90,8 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
           headerRight: () => {
             return (
               <TouchableOpacity
+                // eslint-disable-next-line react-native/no-inline-styles
+                style={{paddingRight: 10}}
                 onPress={() => {
                   logout();
                 }}>
