@@ -91,6 +91,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
                   );
                 }
               }
+              setTimeout(() => {
+                setTestloginmessage('');
+              }, 15000);
             })
             .catch((error) => {
               console.log(error);
