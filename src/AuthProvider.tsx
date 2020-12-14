@@ -70,17 +70,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
                 setUser(userLogado);
                 AsyncStorage.setItem('user', JSON.stringify(userLogado));
               } else {
-                if ({loginEmail} || {loginPassword} === undefined) {
+                if (responseJson.non_field_errors) {
+                  console.log(JSON.stringify(responseJson.non_field_errors));
+                  setTestloginmessage(
+                    JSON.stringify(responseJson.non_field_errors),
+                  );
+                } else if ({loginEmail} || {loginPassword} == null) {
+                  console.log({loginEmail});
+                  console.log({loginPassword});
                   console.log('Campo login e/ou senha não podem ser vazios');
                   setTestloginmessage(
                     'Campo login e/ou senha não podem ser vazios',
-                  );
-                } else if (responseJson.token === undefined) {
-                  console.log(
-                    'Impossível fazer login com as credenciais fornecidas.',
-                  );
-                  setTestloginmessage(
-                    'Impossível fazer login com as credenciais fornecidas.',
                   );
                 } else {
                   console.log(
