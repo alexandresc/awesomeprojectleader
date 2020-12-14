@@ -1,6 +1,12 @@
 # Awesome Project Leader
 Learning kit for react-native
 
+For first build, check 
+
+```npm install```
+
+After a minute or so,
+
 to run this project in a local env you need these commands
 
 ```npx react-native start```
