@@ -67,6 +67,7 @@ function EditProduct({route, navigation}: HomeStackNavProps<'EditProduct'>) {
 
   useEffect(() => {
     navigation.setParams({submit});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

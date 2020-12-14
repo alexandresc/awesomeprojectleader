@@ -6,25 +6,19 @@ type User = null | {username: string};
 type Email = null | string | undefined;
 type Password = null | string | undefined;
 type TestLoginMessage = null | string | undefined;
-// type setEmail = null | string
-// type setPassword = null | string
 
 // eslint-disable-next-line no-spaced-func
 export const AuthContext = React.createContext<{
   user: User;
   email: Email;
-  // setEmail: setEmail,
   password: Password;
-  // setPassword: setPassword,
   testloginmessage: TestLoginMessage;
   login: () => void;
   logout: () => void;
 }>({
   user: null,
   email: null,
-  // setEmail: null,
   password: null,
-  // setPassword: null,
   testloginmessage: null,
   login: () => {},
   logout: () => {},
@@ -46,9 +40,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
       value={{
         user,
         email,
-        // setEmail,
         password,
-        // setPassword,
         testloginmessage,
         login: () => {
           // fetch('https://webhook.site/2c1da83a-950d-4120-87e5-348b689e14df',{
@@ -61,10 +53,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                // email: JSON.stringify({email}),
-                // password: JSON.stringify({password}),
-                // email: {email}.email,
-                // password: {password}.password,
                 // email: 'usuario@teste.com',
                 // password: 'usuario_test_@@',
                 email: {loginEmail}.loginEmail,
@@ -75,31 +63,39 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             .then((response) => response.json())
             .then((responseJson) => {
               console.log(responseJson);
-              console.log('OLHA O TOKEN' + '\n' + responseJson.token);
+              console.log('TEM TOKEN?' + '\n' + responseJson.token);
               if (responseJson.token) {
-                console.log('tem token');
-                console.log('loginEmail: \n' + loginEmail);
-                console.log('loginPassword: \n' + loginPassword);
+                console.log('tem token sim');
                 const userLogado = responseJson.token;
                 setUser(userLogado);
                 AsyncStorage.setItem('user', JSON.stringify(userLogado));
               } else {
-                console.log('nao tem token');
-                console.log('loginEmail: \n' + loginEmail);
-                console.log('loginPassword: \n' + loginPassword);
-                setTestloginmessage('nao tem token');
+                if ({loginEmail} || {loginPassword} === undefined) {
+                  console.log('Campo login e/ou senha não podem ser vazios');
+                  setTestloginmessage(
+                    'Campo login e/ou senha não podem ser vazios',
+                  );
+                } else if (responseJson.token === undefined) {
+                  console.log(
+                    'Impossível fazer login com as credenciais fornecidas.',
+                  );
+                  setTestloginmessage(
+                    'Impossível fazer login com as credenciais fornecidas.',
+                  );
+                } else {
+                  console.log(
+                    'Campo login e/ou senha possivelmente estão errados',
+                  );
+                  setTestloginmessage(
+                    'Campo login e/ou senha possivelmente estão errados',
+                  );
+                }
               }
             })
             .catch((error) => {
               console.log(error);
               setTestloginmessage(error);
-              console.log('loginEmail: \n' + loginEmail);
-              console.log('loginPassword: \n' + loginPassword);
             });
-
-          // const fakeUser = { username: "bob" };
-          // setUser(fakeUser);
-          // AsyncStorage.setItem("user", JSON.stringify(fakeUser));
         },
         logout: () => {
           setUser(null);

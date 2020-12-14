@@ -10,9 +10,6 @@ interface AuthStackProps {}
 
 const Stack = createStackNavigator<AuthParamList>();
 
-// const [loginEmail,setLoginEmail] = useState("")
-// const [loginPassword,setLoginPassword] = useState("")
-
 function Login({navigation}: AuthNavProps<'Login'>) {
   const {login, testloginmessage} = useContext(AuthContext);
   const {
@@ -27,16 +24,12 @@ function Login({navigation}: AuthNavProps<'Login'>) {
       <Text>I am a login screen</Text>
       <TextInput
         style={{}}
-        // onChangeText={setEmail}
-        // value={email}
         onChangeText={setLoginEmail}
         value={loginEmail}
         placeholder="email"
       />
       <TextInput
         style={{}}
-        // onChangeText={setPassword}
-        // value={password}
         onChangeText={setLoginPassword}
         value={loginPassword}
         placeholder="password"
@@ -46,16 +39,8 @@ function Login({navigation}: AuthNavProps<'Login'>) {
         onPress={() => login()}
         color="purple"
       />
-      <Text>testloginmessage: {testloginmessage}</Text>
-      <Text>loginEmail: {loginEmail}</Text>
-      {/* <Text>setLoginEmail: {setLoginEmail}</Text> */}
-      <Text>loginPassword: {loginPassword}</Text>
-      {/* <Text>setLoginPassword: {setLoginPassword}</Text> */}
-      {/* <Text>email: {email}</Text> */}
-      {/* <Button
-          title="log me in"
-          onPress={() => {login()}}
-        /> */}
+      <Text>{testloginmessage}</Text>
+
       <Button
         title="go to register"
         onPress={() => {
@@ -80,8 +65,6 @@ function Register({navigation, route}: AuthNavProps<'Register'>) {
     </Center>
   );
 }
-
-// const LoginPasswordContext = createContext<LoginPasswordData>({} as LoginPasswordData);
 
 export const AuthStack: React.FC<AuthStackProps> = ({}) => {
   return (
